@@ -40,12 +40,13 @@ const students = [
   'dkrasheninnikov',
   'AntonLantukh',
   'anton-yakovlev',
-  'eugenedan'
+  'eugenedan',
+  'evgeniyandrusenko'
 ];
 
 async function main() {
   for (let student of students) {
-    await createHomeworkBranch(1, student);
+    await createHomeworkBranch(2, student);
   }
   await execPromise('git checkout june_master');
 }
