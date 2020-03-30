@@ -60,20 +60,33 @@ class App extends Component {
         return(
             <div className="container">
                 <div className="tab-panel">
-                <Step number="1" onClick={()=> this.handleTabClick(1)}
-                isSelected={this.state.step === 1}>Personal</Step>
-                <Step number="2" onClick={()=> this.handleTabClick(2)}
-                isSelected={this.state.step === 2}>Card</Step>
-                <Step number="3" onClick={()=> this.handleTabClick(3)}
-                isSelected={this.state.step === 3}>Final</Step>
+                <Step number="1" onClick={() => this.handleTabClick(1)}
+                    isSelected={this.state.step === 1}
+                    isClickable={true}>
+                        Personal
+                </Step>
+                <Step number="2" onClick={() => this.state.step >= 2 ? this.handleTabClick(2) : undefined}
+                    isSelected={this.state.step === 2}
+                    isClickable={this.state.step >= 2}>
+                        Card
+                </Step>
+                <Step number="3" onClick={() => this.state.step >= 3 ? this.handleTabClick(2) : undefined}
+                    isSelected={this.state.step === 3}
+                    isClickable={this.state.step >= 3}>
+                        Final
+                </Step>
                 </div>
                 <div className="form-content">
-                <Title title_={this.state.step}/>
-                {this.renderForm()}</div>
+                    <Title title_={this.state.step}/>
+                    {this.renderForm()}
+                </div>
                 <div className="button-panel">
-                <button className="button-next"
-                disabled={!this.isFormCommitable()}
-                onClick={this.handleClickNextForm}>ПУНЬК</button></div>
+                    <button className="button-next"
+                        disabled={!this.isFormCommitable()}
+                        onClick={this.handleClickNextForm}>
+                            ПУНЬК
+                    </button>
+                </div>
             </div>
             
         );
