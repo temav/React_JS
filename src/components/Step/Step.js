@@ -18,7 +18,7 @@ class Step extends Component {
         if(prop.isSelected)
             a = ' step-selected';
     
-        return(<div className={"step"+a}>
+        return(<div className={"step"+a} onClick={this.props.onClick}>
         <div className="step__number">{this.props.number}</div>
         <div className="step__title">{this.props.children}</div>
         </div>

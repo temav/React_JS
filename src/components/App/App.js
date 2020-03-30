@@ -13,9 +13,8 @@ class App extends Component {
         email: '',
         cardNumber: '',
     };
-    handleClickNextForm = (event) => {
-        if(this.isFormCommitable())
-            this.setState({step: ++this.state.step}, ()=>{});
+    handleClickNextForm = () => {
+        this.setState({step: this.state.step+1}, ()=>{});
     };
     handleTabClick = (value) => {
         if (value)
@@ -41,15 +40,17 @@ class App extends Component {
     };
     renderForm = () => {
         switch(this.state.step) {
-            case 1: {
-                return (<PersonalForm firstName={this.state.firstName} lastName={this.state.lastName} email={this.state.email} onChangeForm={this.handleChangeForm} />)
-            };
-            case 2: {
-                return (<CardForm cardNumber={this.state.cardNumber} onChangeForm={this.handleChangeForm} onChangeTimeOver={this.handleChangeTimeOver}/>)
-            };
-            case 3: {
+            case 1:
+                return (<PersonalForm firstName={this.state.firstName}
+                    lastName={this.state.lastName} email={this.state.email}
+                    onChangeForm={this.handleChangeForm} />);
+
+            case 2:
+                return (<CardForm cardNumber={this.state.cardNumber}
+                    onChangeForm={this.handleChangeForm}
+                    onChangeTimeOver={this.handleChangeTimeOver}/>)
+            case 3:
                 return (<p data-test="congratulations">Поздравляем!</p>);
-            };
             default:
                 return false;
         }
@@ -59,15 +60,20 @@ class App extends Component {
         return(
             <div className="container">
                 <div className="tab-panel">
-                <Step number="1" onClick={this.handleTabClick}>Personal</Step>
-                <Step number="2" onClick={this.handleTabClick}>Card</Step>
-                <Step number="3" onClick={this.handleTabClick}>Final</Step>
+                <Step number="1" onClick={()=> this.handleTabClick(1)}
+                isSelected={this.state.step === 1}>Personal</Step>
+                <Step number="2" onClick={()=> this.handleTabClick(2)}
+                isSelected={this.state.step === 2}>Card</Step>
+                <Step number="3" onClick={()=> this.handleTabClick(3)}
+                isSelected={this.state.step === 3}>Final</Step>
                 </div>
                 <div className="form-content">
                 <Title title_={this.state.step}/>
                 {this.renderForm()}</div>
                 <div className="button-panel">
-                <button className="button-next" onClick={this.handleClickNextForm}>ПУНЬК</button></div>
+                <button className="button-next"
+                disabled={!this.isFormCommitable()}
+                onClick={this.handleClickNextForm}>ПУНЬК</button></div>
             </div>
             
         );
