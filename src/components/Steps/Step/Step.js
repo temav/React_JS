@@ -11,7 +11,7 @@ class Step extends Component {
         }
     };
     render() {
-        const {isClickable, isSelected, onClickTab, number, step} = this.props;
+        const {isClickable, isSelected, onClickTab, number, step, children} = this.props;
         let step_classname = 'step';
         isClickable ? step_classname += ' step-clickable': step_classname;
         isSelected ? step_classname += ' step-selected': step_classname;
@@ -19,7 +19,7 @@ class Step extends Component {
         return(<div className={step_classname} onClick={() => {
             step >= number ? onClickTab(number) : undefined}}>
         <div className="step__number">{number}</div>
-        <div className="step__title">{this.props.children}</div>
+        <div className="step__title">{children}</div>
         </div>
         );
     }
