@@ -62,21 +62,6 @@ class App extends Component {
                 <Steps data_headers={['Personal', 'Card', 'Good luck!']} 
                     step={this.state.step}
                     click_func={this.handleTabClick}/>
-                {/* <Step number="1" onClick={() => this.handleTabClick(1)}
-                    isSelected={this.state.step === 1}
-                    isClickable={true}>
-                        Personal
-                </Step>
-                <Step number="2" onClick={() => this.state.step >= 2 ? this.handleTabClick(2) : undefined}
-                    isSelected={this.state.step === 2}
-                    isClickable={this.state.step >= 2}>
-                        Card
-                </Step>
-                <Step number="3" onClick={() => this.state.step >= 3 ? this.handleTabClick(3) : undefined}
-                    isSelected={this.state.step === 3}
-                    isClickable={this.state.step >= 3}>
-                        Final
-                </Step> */}
                 </div>
                 <div className="form-content">
                     <Title title_={this.state.step}/>
