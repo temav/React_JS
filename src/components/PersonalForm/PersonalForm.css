@@ -1,8 +1,0 @@
-.personal-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.personal-form input {
-  margin-top: 10px;
-}

@@ -1,67 +1,134 @@
-describe('Домашнее задание 3го занятия', function() {
+describe('homework', () => {
   before(() => {
     cy.visit('/');
   });
 
-  describe('Шаги формы', () => {
-    it('На странице есть 3 шага формы с классом .step', () => {
-      cy.get('body .step').should($steps => {
-        expect($steps).to.have.length(3);
+  describe('Общая верстка', () => {
+    describe('Присутствие тегов', () => {
+      it('Присутствует .component-list__name с именем VideoPlayer', () => {
+        cy.get('.component-list__name').contains('VideoPlayer');
+      });
+      it('Присутствует .component-list__name с именем Card number formating', () => {
+        cy.get('.component-list__name').contains('Card number formating');
+      });
+      it('Присутствует .component-list__name с именем ModalButton', () => {
+        cy.get('.component-list__name').contains('ModalButton');
+      });
+
+      it('Присутствует тег hr', () => {
+        cy.get('hr');
+      });
+    });
+  });
+
+  describe('VideoPlayer', () => {
+    describe('Верстка', () => {
+      it('Присутствует video тег', () => {
+        cy.get('video');
+      });
+      it('Присутствует кнопка с надписью Play', () => {
+        cy.get('button').contains('Play');
+      });
+      it('Присутствует кнопка с надписью Stop', () => {
+        cy.get('button').contains('Stop');
+      });
+    });
+    describe('Логика', () => {
+      it('Включает видео при нажатии на кнопку с надписью Play', () => {
+        cy
+          .get('button')
+          .contains('Play')
+          .click();
+        cy.wait(300);
+        cy.get('video').then($tag => {
+          expect($tag[0].paused).to.eq(false);
+          expect($tag[0].ended).to.eq(false);
+          expect($tag[0].currentTime).to.be.gt(0);
+        });
+      });
+      it('Выключает видео при нажатии на кнопку с надписью Stop', () => {
+        cy
+          .get('button')
+          .contains('Play')
+          .click();
+        cy.wait(300);
+        cy
+          .get('button')
+          .contains('Stop')
+          .click();
+
+        cy.get('video').then($tag => {
+          expect($tag[0].paused).to.eq(true);
+          expect($tag[0].ended).to.eq(false);
+          expect($tag[0].currentTime).to.be.gt(0);
+        });
+      });
+    });
+  });
+
+  describe('Card number formating', () => {
+    before(() => {
+      cy
+        .get('.component-list__name')
+        .contains('Card number formating')
+        .click();
+    });
+
+    describe('Верстка', () => {
+      it('Присутствует video тег', () => {
+        cy.get('input');
       });
     });
 
-    it('На странице есть название формы с классом .title', () => {
-      cy.get('body .title').should($title => {
-        expect($title).to.have.length(1);
+    describe('Логика', () => {
+      it('Форматирует ввод, после 4го символа появляется пробел', () => {
+        cy.get('input').type('12345{rightarrow}6789{rightarrow}0123{rightarrow}456');
+        cy.get('input').and('have.value', '1234 5678 9012 3456');
       });
     });
   });
 
-  describe('Персональная информация', () => {
-    it('Кнопка next имеет аттрибут disabled пока форма не заполнена правильно', () => {
-      cy.get('.button-next').should('have.attr', 'disabled');
-    });
-
-    it('Если заполнить форму правильно, кнопку next можно нажать', () => {
-      cy.get('[data-test="personal-form"] [name="firstName"]').type('Al');
-      cy.get('[data-test="personal-form"] [name="lastName"]').type('Pacino');
-      cy.get('[data-test="personal-form"] [name="email"]').type('al@pacino.com');
-      cy.get('.button-next').should('not.have.attr', 'disabled');
-    });
-  });
-
-  describe('Card info', () => {
+  describe('ModalButton', () => {
     beforeEach(() => {
-      cy.visit('/');
-      cy.get('[data-test="personal-form"] [name="firstName"]').type('Al');
-      cy.get('[data-test="personal-form"] [name="lastName"]').type('Pacino');
-      cy.get('[data-test="personal-form"] [name="email"]').type('al@pacino.com');
-      cy.get('.button-next').click({ force: true });
+      cy.reload();
+      cy
+        .get('.component-list__name')
+        .contains('ModalButton')
+        .click();
     });
 
-    it('Кнопка next имеет аттрибут disabled пока не записано 16 цифр', () => {
-      cy.get('.button-next').should('have.attr', 'disabled');
+    describe('Верстка', () => {
+      it('Присутствует кнопка с надписью Show modal!', () => {
+        cy.get('button').contains('Show modal!');
+      });
+
+      it('Модальное окно отсутствует', () => {
+        cy.get('#portal .modal').and('not.exist');
+      });
     });
 
-    it('Если записать 16 цифр, кнопку next можно нажать', () => {
-      cy.get('[data-test="card-form"] [name="cardNumber"]').type('1234123412341234');
-      cy.get('.button-next').should('not.have.attr', 'disabled');
-    });
-  });
+    describe('Логика', () => {
+      it('При нажатии кнопки Show modal! появляется модальное окно #portal .modal', () => {
+        cy
+          .get('button')
+          .contains('Show modal!')
+          .click();
+        cy.get('#portal .modal');
+      });
 
-  describe('Congratulations', () => {
-    beforeEach(() => {
-      cy.visit('/');
-      cy.get('[data-test="personal-form"] [name="firstName"]').type('Al');
-      cy.get('[data-test="personal-form"] [name="lastName"]').type('Pacino');
-      cy.get('[data-test="personal-form"] [name="email"]').type('al@pacino.com');
-      cy.get('.button-next').click({ force: true });
-      cy.get('[data-test="card-form"] [name="cardNumber"]').type('1234123412341234');
-      cy.get('.button-next').click({ force: true });
-    });
+      it('При нажатии кнопки Close в модальном окне окно закрывается', () => {
+        cy
+          .get('button')
+          .contains('Show modal!')
+          .click();
 
-    it('Присутствует поздравление', () => {
-      cy.get('[data-test="congratulations"]');
+        cy
+          .get('.modal button')
+          .contains('Close')
+          .click();
+
+        cy.get('#portal .modal').and('not.exist');
+      });
     });
   });
 });
