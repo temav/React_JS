@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
+import './Title.css';
 
 class Title extends Component {
     render() {
+        // step = this.props;
         const TITLE_PERSONAL = "Personal";
         const TITLE_CARD = "Card Info";
         const TITLE_FINISH = "Good luck!";
-        switch(this.props.step) {
-            case 1:
-                return (<h1>{TITLE_PERSONAL}</h1>);
-            case 2:
-                return (<h1>{TITLE_CARD}</h1>);
-            case 3:
-                return (<h1>{TITLE_FINISH}</h1>); 
-            default:
-                return (<h1>{"Что-то не так"}</h1>);      
+        let title_name;
+        switch(this.props.title_) {
+            case 1: {
+                title_name = TITLE_PERSONAL;
+                break;
+            }
+            case 2: {
+                title_name = TITLE_CARD;
+                break;
+            }
+            case 3: {
+                title_name = TITLE_FINISH;
+                break;
+            }
+                 
+            default: {
+                title_name = "Что-то не так";
+                break;
+            }   
         }
+        return (<div className="title"><h1>{title_name}</h1></div>)
     }
 }
 

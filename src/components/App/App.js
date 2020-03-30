@@ -59,12 +59,12 @@ class App extends Component {
         return(
             <div className="container">
                 <div className="tab-panel">
-                <Step number="1" onClick={this.handleTabClick(1)}>Personal</Step>
-                <Step number="2" onClick={this.handleTabClick(2)}>Card</Step>
-                <Step number="3" onClick={this.handleTabClick(3)}>Final</Step>
+                <Step number="1" onClick={this.handleTabClick}>Personal</Step>
+                <Step number="2" onClick={this.handleTabClick}>Card</Step>
+                <Step number="3" onClick={this.handleTabClick}>Final</Step>
                 </div>
                 <div className="form-content">
-                <Title title={this.state.step}/>
+                <Title title_={this.state.step}/>
                 {this.renderForm()}</div>
                 <div className="button-panel">
                 <button className="button-next" onClick={this.handleClickNextForm}>ПУНЬК</button></div>
