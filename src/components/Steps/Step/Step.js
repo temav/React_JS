@@ -11,14 +11,13 @@ class Step extends Component {
         }
     };
     render() {
-        const prop = this.props;
-        let a = '';
-        if(prop.isClickable)
-            a += ' step-clickable';
-        if(prop.isSelected)
-            a += ' step-selected';
+        const {isClickable, isSelected, onClickTab, number, step} = this.props;
+        let step_classname = 'step';
+        isClickable ? step_classname += ' step-clickable': step_classname;
+        isSelected ? step_classname += ' step-selected': step_classname;
     
-        return(<div className={"step"+a} onClick={this.props.onClick}>
+        return(<div className={step_classname} onClick={() => {
+            step >= number ? onClickTab(number) : undefined}}>
         <div className="step__number">{this.props.number}</div>
         <div className="step__title">{this.props.children}</div>
         </div>

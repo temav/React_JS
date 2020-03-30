@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import PersonalForm from '../PersonalForm';
 import CardForm from '../CardForm';
-import Step from '../Step';
+import Steps from '../Steps';
 import Title from '../Title';
 
 class App extends Component {
@@ -55,12 +55,14 @@ class App extends Component {
                 return false;
         }
     };
-
     render() {
         return(
             <div className="container">
                 <div className="tab-panel">
-                <Step number="1" onClick={() => this.handleTabClick(1)}
+                <Steps data_headers={['Personal', 'Card', 'Good luck!']} 
+                    step={this.state.step}
+                    click_func={this.handleTabClick}/>
+                {/* <Step number="1" onClick={() => this.handleTabClick(1)}
                     isSelected={this.state.step === 1}
                     isClickable={true}>
                         Personal
@@ -74,7 +76,7 @@ class App extends Component {
                     isSelected={this.state.step === 3}
                     isClickable={this.state.step >= 3}>
                         Final
-                </Step>
+                </Step> */}
                 </div>
                 <div className="form-content">
                     <Title title_={this.state.step}/>
