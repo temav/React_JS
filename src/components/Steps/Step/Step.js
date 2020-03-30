@@ -18,7 +18,7 @@ class Step extends Component {
     
         return(<div className={step_classname} onClick={() => {
             step >= number ? onClickTab(number) : undefined}}>
-        <div className="step__number">{this.props.number}</div>
+        <div className="step__number">{number}</div>
         <div className="step__title">{this.props.children}</div>
         </div>
         );
