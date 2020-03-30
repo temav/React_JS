@@ -70,7 +70,7 @@ class App extends Component {
                     isClickable={this.state.step >= 2}>
                         Card
                 </Step>
-                <Step number="3" onClick={() => this.state.step >= 3 ? this.handleTabClick(2) : undefined}
+                <Step number="3" onClick={() => this.state.step >= 3 ? this.handleTabClick(3) : undefined}
                     isSelected={this.state.step === 3}
                     isClickable={this.state.step >= 3}>
                         Final
@@ -80,13 +80,15 @@ class App extends Component {
                     <Title title_={this.state.step}/>
                     {this.renderForm()}
                 </div>
+                {this.state.step !== 3 ?
                 <div className="button-panel">
                     <button className="button-next"
                         disabled={!this.isFormCommitable()}
                         onClick={this.handleClickNextForm}>
-                            ПУНЬК
+                            Далее
                     </button>
                 </div>
+                : undefined}
             </div>
             
         );
