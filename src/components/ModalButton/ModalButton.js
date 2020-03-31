@@ -13,8 +13,12 @@ class ModalButton extends Component {
     this.setState({isModalShow: true}, ()=>{});
   };
   render() {
-    const {isModalShow} = this.state.isModalShow;
-    return ({isModalShow} ? <Modal/> : {undefined});
+    const {isModalShow} = this.state;
+    return (
+    <div>
+      <button onClick={this.showModal}>Show modal</button> 
+      {isModalShow ? <Modal hideModal={this.hideModal}/> : undefined}
+    </div>);
   }
 }
 
