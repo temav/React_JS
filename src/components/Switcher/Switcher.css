@@ -9,7 +9,7 @@
 
 }
 
-.component-list name {
+.component-list__name {
   margin-right: 10px;
   text-decoration: underline;
   cursor: pointer;

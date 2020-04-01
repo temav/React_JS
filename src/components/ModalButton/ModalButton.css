@@ -1,5 +1,6 @@
 .modal {
   position: absolute;
+  background-color: white;
   top: 0;
   left: 0;
   width: 100%;

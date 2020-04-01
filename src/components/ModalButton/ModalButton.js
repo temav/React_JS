@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Modal from './Modal';
 import './ModalButton.css';
 
@@ -17,7 +18,8 @@ class ModalButton extends Component {
     return (
     <div>
       <button onClick={this.showModal}>Show modal</button> 
-      {isModalShow ? <Modal hideModal={this.hideModal}/> : undefined}
+      {isModalShow ? ReactDOM.createPortal(<Modal hideModal={this.hideModal}/>, 
+        document.getElementById('modal')) : undefined}
     </div>);
   }
 }
