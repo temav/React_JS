@@ -1,33 +1,13 @@
-import React, { PureComponent } from 'react';
-import { Switch, withRouter, Link, Route} from 'react-router-dom';
-import { AuthorizeProvider } from 'components/AuthorizeProvider';
-import Login from '../Login';
-import Public from '../Public';
+import React, { Component } from 'react';
 import './App.css';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
-export class App extends PureComponent {
+import Market from '../Market';
+import Farm from '../Farm';
+import Budget from '../Budget';
+
+export class App extends Component {
   render() {
-    return (
-      <AuthorizeProvider>
-        <div>
-            <nav>
-            <Link to="/">Главная</Link>
-            <Link to="/login">Войти</Link>
-            <Link to="/private">Секретная страница</Link>
-            </nav>
-        </div>
-        <Switch>
-          <Route exact path="/" component={Public} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute/>
-              
-        </Switch>
-      </AuthorizeProvider>
-    );
+    return <div className="app" />;
   }
 }
 
-// это важно!
-// необходимо использовать этот хок(withRouter), потому что при использовании нескольких контекстов
-// реакт-роутер теряет свой контекст. Причина — использование старого апи.
-export default withRouter(App);
+export default App;
