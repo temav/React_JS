@@ -10,7 +10,7 @@ class AuthorizeProvider extends Component {
     isAuthorized: false
   };
   authorizeUser = (login, password) => {
-    if(login==="student" && password ==="123") {
+    if (login === "student" && password === "123") {
       this.setState({isAuthorized : true})
       return true;
     }
@@ -19,7 +19,6 @@ class AuthorizeProvider extends Component {
   render() {
     const { children } = this.props;
     const { isAuthorized } = this.state;
-
     return (
       <Provider value={{ isAuthorized, authorizeUser: this.authorizeUser }}>
         {children}
