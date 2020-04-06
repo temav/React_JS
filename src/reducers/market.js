@@ -15,7 +15,6 @@ export default (state = initMarketState, action) => {
               });    
         }
         case MOVE_ORDER_TO_FARM: {
-            // state.orders = state.orders.filter((item) => item['id'] !== action.payload.id)
             return Object.assign({}, state, {orders: [...state.orders.filter((item) => 
                 item['id'] !== action.payload.id)]});
         }
