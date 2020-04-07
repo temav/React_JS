@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from 'components/App';
+import AppRouter from 'components/AppRouter';
+import getStore from './store';
 import { Provider } from 'react-redux';
-import createStore from './store';
+import { BrowserRouter } from 'react-router-dom';
 
-const store = createStore();
+const store = getStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
