@@ -1,6 +1,10 @@
 .farm {
+  width: 250px;
   border-radius: 4px;
   background-color: #eee;
   padding: 10px 20px;
   margin: 0 10px;
+}
+.order-list {
+  padding: 20px 0;
 }
