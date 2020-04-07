@@ -8,13 +8,16 @@ const initFarmState = {
 export default (state = initFarmState, action) => {
     switch(action.type) {
         case MOVE_ORDER_TO_FARM: {
-            return Object.assign({}, state, {
-                orders: [...state.orders, action.payload]
-              }); 
+            // return Object.assign({}, state, {
+            //     orders: [...state.orders, action.payload]
+            //   }); 
+            return { orders: [...state.orders, action.payload] }; 
         }
         case MOVE_ORDER_TO_CUSTOMER: {
-            return Object.assign({}, state, {orders: [...state.orders.filter((item) => 
-                item['id'] !== action.payload.id)]});
+            // return Object.assign({}, state, {orders: [...state.orders.filter((item) => 
+            //     item['id'] !== action.payload.id)]});
+            return { orders: [...state.orders.filter((item) => 
+                item['id'] !== action.payload.id)] };
         }
         default: return state;
     }
