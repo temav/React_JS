@@ -8,16 +8,16 @@ const initBudgetState = {
 export default (state = initBudgetState, action) => {
     switch(action.type) {
         case CREATE_ORDER: {
-            state.profit += action.payload.price;
-            return state;
+            return Object.assign({}, state, 
+                {profit: state.profit + action.payload.price});
         }
         case MOVE_ORDER_TO_CUSTOMER: {
-            state.deliveryExpanse += 20;
-            return state;
+            return Object.assign({}, state, 
+                {deliveryExpanse: state.deliveryExpanse + 20});
         }
         case MOVE_ORDER_TO_FARM: {
-            state.farmExpanse += 100;
-            return state;
+            return Object.assign({}, state, 
+                {farmExpanse: state.farmExpanse + 100});
         }
         default: return state;
     }
