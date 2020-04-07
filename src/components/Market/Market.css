@@ -11,6 +11,9 @@
   flex-direction: column;
 }
 
+.new-orders__create-form button:first-child {
+  margin-bottom: 5px;
+}
 
 .order-list {
   padding: 20px 0;

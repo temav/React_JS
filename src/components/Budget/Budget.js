@@ -18,6 +18,7 @@ export const Budget = (props) => {
         <p>Profit: {profit}</p>
         <p>Delivery Expanse: {deliveryExpanse}</p>
         <p>Farm Expanse: {farmExpanse}</p>
+        <p>Summary: {profit-farmExpanse-deliveryExpanse}</p>
     </div>);
 }
 
