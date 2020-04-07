@@ -1,11 +1,11 @@
 import React from 'react';
 import './Order.css';
 
-const Order = ({ name, price, data }) => (
+const Order = ({ name, price, date }) => (
   <div className="order">
     <p>Продукт: {name}</p>
     <p>Цена: {price}</p>
-    <p>Дата: {data}</p>
+    <p>Дата: {date}</p>
   </div>
 );
 

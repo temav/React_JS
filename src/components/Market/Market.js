@@ -52,16 +52,18 @@ export class Market extends Component {
   render() {
     const {market, createOrder, moveOrderToFarm} = this.props;
     return <div className="market">
+      <h2>Маркет</h2>
       <div className="new-orders__create-form">
       <button onClick={()=>createOrder(getNewOrder())}>Make order</button>
-      <button onClick={()=>moveOrderToFarm(market.orders[0])}>To Farm</button>
+      <button disabled={market.orders.length === 0} 
+        onClick={()=>moveOrderToFarm(market.orders[0])}>To Farm</button>
       </div>
       <div className="order-list">
       {market.orders.map((item, index) => <Order key={index} 
       id={item.id}
       name={item.name}
       price={item.price}
-      // data={item.createdAt }
+      date={`${item.createdAt}`}
       >
       </Order>)}
       </div>
