@@ -1,0 +1,7 @@
+.show_preview {
+    width: 250px;
+    display: inline-block;
+}
+.show_preview p {
+    font-size: 7px;
+}
