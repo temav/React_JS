@@ -3,6 +3,7 @@ import { searchRequest } from '../../actions/search';
 import { connect } from 'react-redux';
 import { getIsLoading, getData, getError } from '../../reducers/search';
 import ShowPreview from '../ShowPreview';
+import { Link, Route} from 'react-router-dom';
 import './Search.css';
 
 class Search extends Component {
