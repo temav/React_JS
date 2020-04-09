@@ -1,7 +1,9 @@
 .show_preview {
     width: 250px;
     display: inline-block;
+    vertical-align: top;
+    text-align: center;
 }
 .show_preview p {
-    font-size: 7px;
+    font-size: 10px;
 }

@@ -2,12 +2,6 @@ import { searchRequest, searchSuccess, searchFailure } from '../actions/search';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 
-// const initState = {
-//     isLoading: false,
-//     data: [],
-//     error: null,
-// };
-
 const isLoading = handleActions({
     [searchRequest]: () => true,
     [searchSuccess]: () => false,
@@ -28,9 +22,9 @@ export default combineReducers({
     error
 });
 
-export const getIsLoading = state => state.isLoading;
-export const getData = state => state.data;
-export const getError = state => state.error;
+export const getIsLoading = state => state.search.isLoading;
+export const getData = state => state.search.data;
+export const getError = state => state.search.error;
 
 // export default (state = initState, action) => {
 //     switch (action.type) {

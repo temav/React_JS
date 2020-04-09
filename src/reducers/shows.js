@@ -2,17 +2,11 @@ import { showRequest, showSuccess, showFailure } from '../actions/show';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
 
-// const initState = {
-//     isLoading: false,
-//     data: [],
-//     error: null,
-// };
-
 const isLoading = handleActions({
     [showRequest]: () => true,
     [showSuccess]: () => false,
     [showFailure]: () => false,
-}, false);
+}, true);
 
 const data = handleActions({
     [showSuccess]: (state, action) => action.payload
@@ -28,6 +22,6 @@ export default combineReducers({
     error
 });
 
-export const getIsLoading = state => state.isLoading;
-export const getData = state => state.data;
-export const getError = state => state.error;
+export const getIsLoading = state => state.shows.isLoading;
+export const getData = state => state.shows.data;
+export const getError = state => state.shows.error;
