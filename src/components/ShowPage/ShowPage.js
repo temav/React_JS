@@ -9,7 +9,7 @@ class ShowPage extends Component {
      constructor (props) {
         // console.log('constructor');
         super(props);
-        const { showRequest, isLoading } = this.props;
+        const { showRequest } = this.props;
         const {id} = this.props.match.params;
         // console.log('constructor before isload', isLoading);
         showRequest(id);
@@ -21,14 +21,14 @@ class ShowPage extends Component {
         const {image, summary, name} = data;
         // const {id} = this.props.match.params;
         if (isLoading) return(<p>Загрузка данных</p>);
-        if (error) return(<p>{error} 404</p>);
+        if (error || data.status === 404) return(<p>{error} 404</p>);
+        if (!data._embedded) return null; 
         const {cast} = data._embedded;
-        // if (data.length === 0) return null; 
         // console.log('render isload ', isLoading);
         
         // this.props.showRequest(id); 
         // {console.log(data)}
-        return (
+         return (
         <div className="show"> 
         <h1>{name}</h1>
         {image ? <img src={image.medium}/> : undefined}
