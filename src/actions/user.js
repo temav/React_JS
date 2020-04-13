@@ -1,5 +1,5 @@
 import { createActions } from 'redux-actions';
 
-const { userRequest, userSuccess, userFailure } = createActions('USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE');
+const { fetchUserRequest, fetchUserSuccess, fetchUserFailure } = createActions('FETCH_USER_REQUEST', 'FETCH_USER_SUCCESS', 'FETCH_USER_FAILURE');
 
-export { userRequest, userSuccess, userFailure };
+export { fetchUserRequest, fetchUserSuccess, fetchUserFailure };

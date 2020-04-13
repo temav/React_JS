@@ -1,21 +1,19 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
-import { userRequest, userSuccess, userFailure } from '../actions/user';
+import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from '../actions/user';
 
 const isLoading = handleActions({
-    [userRequest]: () => true,
-    [userSuccess]: () => false,
-    [userFailure]: () => false
+    [fetchUserRequest]: () => true,
+    [fetchUserSuccess]: () => false,
+    [fetchUserFailure]: () => false
 }, false);
 
 const user_data = handleActions({
-    // [userRequest]: (state, action) => action,
-    [userSuccess]: (state, action) => action.payload,
-    // [userFailure]: (state, action) => action.error
+    [fetchUserSuccess]: (state, action) => action.payload,
 }, []);
 
 const error = handleActions({
-    [userFailure]: (state, action) => action.error,
+    [fetchUserFailure]: (state, action) => action.error,
 }, null);
 
 export default combineReducers( { isLoading, user_data, error } );

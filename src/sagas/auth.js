@@ -1,33 +1,40 @@
-import {take, put, call, cancelled, fork, cancel, select} from 'redux-saga/effects';
-import { getIsUserAuthorized } from '../ducks/login';
-// import Api from '...';
-import { clearTokenApi } from '../api';
+// import {take, put, call, cancelled, fork, cancel, select} from 'redux-saga/effects';
+// import { getIsUserAuthorized } from '../ducks/auth';
+// // import Api from '...';
+// import { clearTokenApi } from '../api';
+
+import { take, put, call, select } from 'redux-saga/effects';
+import { setTokenApi, clearTokenApi } from 'api';
+import { getIsUserAuthorized } from 'ducks/auth';
+import { loginRequest, loginSuccess, logout } from '../actions/auth';
+import {
+  getTokenFromLocalStorage,
+  setTokenToLocalStorage,
+  removeTokenFromLocalStorage
+} from 'localStorage'
+
 export function* authFlow() {
- while (true) { // 1
-    // const isAuthorized = yield select(getIsUserAuthorized)
-    // if(isAuthorized) {
-   const {user, password} = yield take('LOGIN_REQUEST'); // 2
+  while (true) {
+    const isAuthorized = yield select(getIsUserAuthorized) /* boolean */
+    const localStorageToken = yield call(getTokenFromLocalStorage)
 
-   const task = yield fork(authorize, user, password); // 4
-   const action = yield take(['LOGOUT', 'LOGIN_ERROR']); // 5
+    let token;
 
-   if (action.type === 'LOGOUT') yield cancel(task); // 6
+    if (!isAuthorized && localStorageToken) {
+      token = localStorageToken
+      console.log(...localStorageToken);
+      yield put(loginSuccess())
+    } else {
+      const action = yield take(loginRequest)
+      token = action.payload
+    }
 
-   yield call(clearTokenApi, 'token'); // 7
- }
-}
+    yield call(setTokenApi, token)
+    yield call(setTokenToLocalStorage, token)
+    console.log(token);
+    yield take(logout)
 
-function* authorize(user, password) { // 3
- try {
-   const token = yield call(Api.authorize, user, password);
-   yield put({type: 'LOGIN_SUCCESS', token});
-   yield call(Api.storeItem, {token});
-   return token;
- } catch (error) { // 8
-   yield put({type: 'LOGIN_ERROR', error});
- } finally {
-   if (yield cancelled()) {
-     // логика отмены
-   }
- }
+    yield call(removeTokenFromLocalStorage)
+    yield call(clearTokenApi)
+  }
 }

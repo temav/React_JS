@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {getIsUserAuthorized} from '../../ducks/login';
+import {getIsUserAuthorized} from '../../ducks/auth';
 
 class PrivateRouter extends Component {
     render () {
-        const { isAuthorized } = this.props; 
-        return (isAuthorized ? <div>PrivatePage</div> : <Redirect to='/login'/>);
+        const { isAuthorized, path, component } = this.props; 
+        console.log(this.props);
+        return (isAuthorized ? component : <Redirect from={path} to='/login'/>);
     }
 }
 

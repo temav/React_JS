@@ -4,7 +4,7 @@ import {
   clearNetworkErrors,
   networkError
 } from 'ducks/network';
-import { logout } from 'ducks/auth';
+import { logout } from 'actions/auth';
 
 export default function*(fn, args) {
   try {
