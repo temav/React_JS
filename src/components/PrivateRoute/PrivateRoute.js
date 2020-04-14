@@ -6,8 +6,8 @@ import {getIsUserAuthorized} from '../../ducks/auth';
 class PrivateRouter extends Component {
     render () {
         const { isAuthorized, path, component } = this.props; 
-        console.log(this.props);
-        return (isAuthorized ? component : <Redirect from={path} to='/login'/>);
+        console.log('privateroute', this.props);
+        return (isAuthorized ? <Route path={path} component={component}/> : <Redirect from={path} to='/login'/>);
     }
 }
 

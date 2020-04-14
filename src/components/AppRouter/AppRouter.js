@@ -12,7 +12,8 @@ class AppRouter extends Component {
             <Link to='/login'><h3>Log In</h3></Link>
             <Switch>
                 <Route path='/login' component={Login}/>
-                <PrivateRoute path='/user/me' component={<UserPage/>}/>
+                <PrivateRoute exact path='/user/me' component={UserPage}/>
+                <Route path='/user/:login' component={UserPage}/>
             </Switch>
         </div>);
     }

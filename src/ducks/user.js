@@ -8,7 +8,7 @@ const isLoading = handleActions({
     [fetchUserFailure]: () => false
 }, false);
 
-const user_data = handleActions({
+const data = handleActions({
     [fetchUserSuccess]: (state, action) => action.payload,
 }, []);
 
@@ -16,8 +16,8 @@ const error = handleActions({
     [fetchUserFailure]: (state, action) => action.error,
 }, null);
 
-export default combineReducers( { isLoading, user_data, error } );
+export default combineReducers( { isLoading, data, error } );
 
-export const getIsLoading = state => state.user.isLoading;
-export const getData = state => state.user.data;
-export const getError = state => state.user.error;
+export const getUserIsLoading = state => state.user.isLoading;
+export const getUserData = state => state.user.data;
+export const getUserError = state => state.user.error;
