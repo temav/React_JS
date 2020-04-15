@@ -43,7 +43,7 @@ import { getTokenOwner, getUserInformation, clearTokenApi } from '../api';
         response = yield call(getTokenOwner, );
         yield put(fetchUserSuccess(response.data));
         } catch (error) {
-          // yield call(clearTokenApi,);
+          alert('Login is wrong, would you try login again?');
           yield put(logout());
           console.log('error its me ', error.response);
           yield put(fetchUserFailure(error));
