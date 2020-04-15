@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Follower from '../Follower';
-import { getFollowersData } from '../../ducks/followers';
 import { connect } from 'react-redux';
+
+import { getFollowersData, getFollowersIsLoading } from '../../ducks/followers';
 import { fetchFollowersRequest } from '../../actions/followers';
+
+import Follower from '../Follower';
 
 class Followers extends Component {
     
@@ -20,8 +22,9 @@ class Followers extends Component {
     };
 
     render () {
-    const { followers_data } = this.props;
+    const { followers_data, isLoading } = this.props;
     console.log('followers_data: ', followers_data);
+    if (isLoading && followers_data) return <p>Loading followers...</p>;
     return (<div className='followers'>
         <h3>Followers</h3>
             {followers_data.map((item,index)=><Link to={`/user/${item.login}`} replace={true} key={index}><Follower {...item}/></Link>)}
@@ -31,6 +34,7 @@ class Followers extends Component {
 
 const mapPropsToState = (state) => ({
     followers_data: getFollowersData(state),
+    isLoading: getFollowersIsLoading(state),
 });
 
 export default connect(mapPropsToState, { fetchFollowersRequest })(Followers)
