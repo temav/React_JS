@@ -10,7 +10,7 @@ import {
   } from '../actions/auth';
 
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { getTokenOwner, getUserInformation, clearTokenApi } from '../api';
+import { getTokenOwner, getUserInformation } from '../api';
   
   function* fetchUserSaga(action) {
     // try {
