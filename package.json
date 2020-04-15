@@ -24,9 +24,14 @@
     "cypress:run": "cypress run"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "cypress": "^3.0.2",
-    "enzyme-adapter-react-16": "^1.1.1",
     "enzyme": "^3.3.0",
-    "eslint-plugin-cypress": "^2.0.1"
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-cypress": "^2.0.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0"
   }
 }
