@@ -18,7 +18,7 @@ class Followers extends Component {
     console.log('followers_data: ', followers_data);
     return (<div className='followers'>
         <h3>Followers</h3>
-            {followers_data.map((item,index)=><Link to={`/${item.login}`} key={index}><Follower {...item}/></Link>)}
+            {followers_data.map((item,index)=><Link to={`/user/${item.login}`} replace={true} key={index}><Follower {...item}/></Link>)}
         </div>)
     }
 }
