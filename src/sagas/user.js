@@ -3,11 +3,9 @@ import {
     fetchUserSuccess,
     fetchUserFailure,
   } from '../actions/user';
-  import {
-    loginError,
-  } from '../actions/auth';
-  import { takeLatest, call, put } from 'redux-saga/effects';
-  import { getTokenOwner, getUserInformation } from '../api';
+
+import { takeLatest, call, put } from 'redux-saga/effects';
+import { getTokenOwner, getUserInformation } from '../api';
   
   function* fetchUserSaga(action) {
     try {
@@ -21,11 +19,9 @@ import {
           console.log('its not me')
         response = yield call(getUserInformation, params.login);
         }
-        // yield put(login(error));
       yield put(fetchUserSuccess(response.data));
     } catch (error) {
       yield put(fetchUserFailure(error));
-      yield put(loginError(error));
     }
   }
   

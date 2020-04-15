@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchUserRequest } from '../../actions/user';
 import { logout } from '../../actions/auth';
-import { getUserData } from '../../ducks/user';
+import { getUserData, getUserIsLoading } from '../../ducks/user';
 
 import Followers from '../Followers/Followers';
 import './UserPage.css';
@@ -20,10 +20,10 @@ class UserPage extends Component {
     };
 
     render() {
-        const { user_data, logout } = this.props;
+        const { isLoading, user_data, logout } = this.props;
         const { login } = this.props.match.params;
         const { path } = this.props.match;
-        if(!user_data) return <p>Loading...</p>
+        if(isLoading) return <p>Loading...</p>
         const { name, avatar_url } = user_data;
         
         return <div>UserPage
@@ -31,16 +31,16 @@ class UserPage extends Component {
             <h2>Login: {user_data.login}</h2>
             <h3>Name: {name}</h3>
             <img src={avatar_url}/>
-        {console.log('login to followers: ', login)}
-        {}
-        <Followers login={ login ? login : 'temav' }/> 
+            {console.log('login to followers: ', user_data.login)}
+            {!isLoading && user_data.login && <Followers login={ user_data.login }/> } 
             {console.log('User data',user_data)}
         </div>;
     }
 }
 
 const mapPropsToState = (state) => ({
-    user_data: getUserData(state)    
+    user_data: getUserData(state),
+    isLoading: getUserIsLoading(state)    
 })
 // const mapDispatchToState = ({});
 
