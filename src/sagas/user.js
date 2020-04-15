@@ -53,12 +53,10 @@ import { getTokenOwner, getUserInformation, clearTokenApi } from '../api';
       else {
         try {
           console.log('its not me', params.login)
-          console.log(call(getUserInformation, params.login));
           response = yield call(getUserInformation, params.login);
-          console.log('response user kek', response)
           yield put(fetchUserSuccess(response.data));
         } catch (error) {
-            yield call(clearTokenApi,);
+            // yield call(clearTokenApi,);
             console.log(error.response);
             yield put(fetchUserFailure(error));
           }
