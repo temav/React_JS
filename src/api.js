@@ -12,7 +12,9 @@ export const clearTokenApi = () => {
   instance.defaults.params = { access_token: undefined };
 };
 
-export const getUserInformation = login => instance(`users/${login}`);
+export const getUserInformation = login => { console.log('ebal',instance(`users/${login}`));
+console.log('ebal',instance(`users/${login}`));
+return instance(`users/${login}`);}
 export const getUserFollowers = login =>
   instance(`users/${login}/followers?pages=1&per_page=100`);
 export const getUserRepos = login => instance(`users/${login}/repos`);

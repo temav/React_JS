@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchUserRequest } from '../../actions/user';
 import { logout } from '../../actions/auth';
-import { getUserData, getUserIsLoading } from '../../ducks/user';
+import { getUserData, getUserIsLoading, getUserError } from '../../ducks/user';
 
 import Followers from '../Followers/Followers';
 import './UserPage.css';
@@ -20,13 +20,13 @@ class UserPage extends Component {
     };
 
     render() {
-        const { isLoading, user_data, logout } = this.props;
+        const { isLoading, error, user_data, logout } = this.props;
         const { login } = this.props.match.params;
         const { path } = this.props.match;
         if(isLoading) return <p>Loading...</p>
         const { name, avatar_url } = user_data;
-        
-        return <div>UserPage
+        if(error) return <div><h2>Ошибка</h2>{JSON.stringify(error.response.data)}</div>;
+        return <div>
             {path==='/user/me' && <button onClick={logout}>Log out</button>}
             <h2>Login: {user_data.login}</h2>
             <h3>Name: {name}</h3>
@@ -40,7 +40,8 @@ class UserPage extends Component {
 
 const mapPropsToState = (state) => ({
     user_data: getUserData(state),
-    isLoading: getUserIsLoading(state)    
+    isLoading: getUserIsLoading(state),
+    error: getUserError(state),    
 })
 // const mapDispatchToState = ({});
 

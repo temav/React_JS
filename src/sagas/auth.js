@@ -1,8 +1,3 @@
-// import {take, put, call, cancelled, fork, cancel, select} from 'redux-saga/effects';
-// import { getIsUserAuthorized } from '../ducks/auth';
-// // import Api from '...';
-// import { clearTokenApi } from '../api';
-
 import { take, put, call, select } from 'redux-saga/effects';
 import { setTokenApi, clearTokenApi } from 'api';
 import { getIsUserAuthorized } from 'ducks/auth';
@@ -25,6 +20,7 @@ export function* authFlow() {
       yield put(loginSuccess())
     } else {
       const action = yield take(loginRequest)
+      console.log('auth saga ',action)
       token = action.payload
       yield put(loginSuccess());
     }
