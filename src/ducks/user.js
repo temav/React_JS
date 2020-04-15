@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
+
 import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from '../actions/user';
 import { logout } from '../actions/auth';
 
@@ -15,9 +16,9 @@ const data = handleActions({
 }, []);
 
 const error = handleActions({
-    [fetchUserFailure]: (state, action) => action.payload,//{console.log(action); return action.payload.response.data},
+    [fetchUserFailure]: (state, action) => action.payload,
     [fetchUserSuccess]: () => false,
-    [logout]: () => null,
+    [logout]: () => false,
 }, null);
 
 export default combineReducers( { isLoading, data, error } );

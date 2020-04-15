@@ -1,7 +1,9 @@
 import { take, put, call, select } from 'redux-saga/effects';
 import { setTokenApi, clearTokenApi } from 'api';
+
 import { getIsUserAuthorized } from 'ducks/auth';
-import { loginRequest, loginSuccess, loginError, logout } from '../actions/auth';
+import { loginRequest, loginSuccess, logout } from '../actions/auth';
+
 import {
   getTokenFromLocalStorage,
   setTokenToLocalStorage,
@@ -10,7 +12,7 @@ import {
 
 export function* authFlow() {
   while (true) {
-    const isAuthorized = yield select(getIsUserAuthorized) /* boolean */
+    const isAuthorized = yield select(getIsUserAuthorized) 
     const localStorageToken = yield call(getTokenFromLocalStorage)
 
     let token;

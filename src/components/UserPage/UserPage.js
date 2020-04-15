@@ -21,19 +21,19 @@ class UserPage extends Component {
 
     render() {
         const { isLoading, error, user_data, logout } = this.props;
-        const { login } = this.props.match.params;
+        const { login } = user_data;
         const { path } = this.props.match;
         if(isLoading) return <p>Loading...</p>
         const { name, avatar_url } = user_data;
         if(error) return <div><h2>Ошибка</h2>{JSON.stringify(error.response.data)}</div>;
         return <div>
             {path==='/user/me' && <button onClick={logout}>Log out</button>}
-            <h2>Login: {user_data.login}</h2>
+            <h2>Login: {login}</h2>
             <h3>Name: {name}</h3>
-            <img src={avatar_url}/>
-            {console.log('login to followers: ', user_data.login)}
-            {!isLoading && user_data.login && <Followers login={ user_data.login }/> } 
-            {console.log('User data',user_data)}
+            <img src={avatar_url} alt={'avatar'}/>
+            {console.log('login to followers: ', login)}
+            {!isLoading && user_data.login && <Followers login={ login }/> } 
+            {console.log('User data', user_data)}
         </div>;
     }
 }
@@ -43,6 +43,5 @@ const mapPropsToState = (state) => ({
     isLoading: getUserIsLoading(state),
     error: getUserError(state),    
 })
-// const mapDispatchToState = ({});
 
 export default connect(mapPropsToState, {fetchUserRequest, logout})(UserPage);
