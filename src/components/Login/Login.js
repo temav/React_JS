@@ -18,7 +18,7 @@ class Login extends Component {
     render() {
         const { isAuthorized } = this.props;
     if(isAuthorized) return (<Redirect to='user/me'/>);
-    return <div><h2>Login</h2>
+    return <div className='login'><h2>Login</h2>
         <input onChange={this.handleOnChange} name='token' placeholder='Access token'/>
         <button onClick={this.handleLogin}>LOGIN</button>
     </div>

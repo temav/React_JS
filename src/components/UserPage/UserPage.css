@@ -1,4 +1,55 @@
-body {
-    width: 100%;
+.app_router {
+    padding: 50px;
+    width: 1000px;
     margin: 0 auto;
-};
+}
+
+.app_router h2,
+.app_router h3,
+.app_router h4 {
+    color: white;
+    padding: 5px;
+    background-color: darkslategray;
+}
+
+.user_page, .user_owner {
+    display: flex;
+    flex-direction: column;
+}
+.user_page {
+    align-items: center;
+}
+.user_owner button {
+    justify-self: center;
+    padding: 5px;
+    background-color: darkslategray;
+    color: white;
+    font-size: 25px;
+    text-transform: uppercase;
+    
+    border-radius: 10px;
+}
+button, a {
+    border: none;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+img {
+    width: inherit;
+}
+.user_owner {
+    width: 400px;
+}
+
+.login input {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.login button {
+    padding: 12px;
+    font-size: 15px;
+    background-color: darkslategray;
+    color: white;
+}

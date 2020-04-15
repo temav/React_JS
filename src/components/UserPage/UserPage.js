@@ -26,12 +26,14 @@ class UserPage extends Component {
         if(isLoading) return <p>Loading...</p>
         const { name, avatar_url } = user_data;
         if(error) return <div><h2>Ошибка</h2>{JSON.stringify(error.response.data)}</div>;
-        return <div>
+        return <div className='user_page'>
+            <div className="user_owner">
             {path==='/user/me' && <button onClick={logout}>Log out</button>}
             <h2>Login: {login}</h2>
             <h3>Name: {name}</h3>
             <img src={avatar_url} alt={'avatar'}/>
             {console.log('login to followers: ', login)}
+            </div>
             {!isLoading && user_data.login && <Followers login={ login }/> } 
             {console.log('User data', user_data)}
         </div>;

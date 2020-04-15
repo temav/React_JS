@@ -1,4 +1,5 @@
 import React from 'react';
+import './Follower.css';
 
 const Follower = (props) => {
     const { login, avatar_url } = props;

@@ -7,7 +7,7 @@ import UserPage from '../UserPage'
 class AppRouter extends Component {
     render () {
         return (
-        <div>
+        <div className='app_router'>
             <Switch>
                 <Route path='/login' component={Login}/>
                 <PrivateRoute exact path='/user/me' component={UserPage}/>
