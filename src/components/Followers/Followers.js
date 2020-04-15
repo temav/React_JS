@@ -9,9 +9,15 @@ class Followers extends Component {
     
     componentDidMount = () => {
         const { fetchFollowersRequest, login } = this.props;
-        console.log('FOLLOWERS:',login);
+        console.log('FOLLOWERS for (login):', login);
         fetchFollowersRequest(login);
-    }
+    };
+    componentDidUpdate = (prevProps) => {
+        const { fetchFollowersRequest, login } = this.props;
+        if (login !== prevProps.login) {
+            fetchFollowersRequest(login);
+          }
+    };
 
     render () {
     const { followers_data } = this.props;
