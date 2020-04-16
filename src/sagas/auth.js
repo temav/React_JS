@@ -8,30 +8,30 @@ import {
   getTokenFromLocalStorage,
   setTokenToLocalStorage,
   removeTokenFromLocalStorage
-} from 'localStorage'
+} from 'localStorage';
 
 export function* authFlow() {
   while (true) {
-    const isAuthorized = yield select(getIsUserAuthorized) 
-    const localStorageToken = yield call(getTokenFromLocalStorage)
+    const isAuthorized = yield select(getIsUserAuthorized);
+    const localStorageToken = yield call(getTokenFromLocalStorage);
 
     let token;
 
     if (!isAuthorized && localStorageToken) {
-      token = localStorageToken
-      yield put(loginSuccess())
+      token = localStorageToken;
+      yield put(loginSuccess());
     } else {
-      const action = yield take(loginRequest)
-      console.log('auth saga ',action)
-      token = action.payload
+      const action = yield take(loginRequest);
+      console.log('auth saga ', action);
+      token = action.payload;
       yield put(loginSuccess());
     }
 
-    yield call(setTokenApi, token)
-    yield call(setTokenToLocalStorage, token)
+    yield call(setTokenApi, token);
+    yield call(setTokenToLocalStorage, token);
 
-    yield take(logout)
-    yield call(removeTokenFromLocalStorage)
-    yield call(clearTokenApi)
+    yield take(logout);
+    yield call(removeTokenFromLocalStorage);
+    yield call(clearTokenApi);
   }
 }
